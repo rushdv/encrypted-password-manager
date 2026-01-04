@@ -1,4 +1,16 @@
-MASTER_PASSWORD = "tanzim313"
+import os
+
+def set_master_password():
+    master = input("Set master password: ")
+    with open("master.txt", "w") as file:
+        file.write(master)
+    print("Master password set successfully !")
+
+def check_master_password():
+    entered = input("Enter master password: ")
+    with open("master.txt", "r") as file:
+        saved = file.read()
+    return entered == saved
 
 def add_password():
     site = input("Website: ")
@@ -21,6 +33,10 @@ def view_password():
         print("No password saved yet.")
 
 
+if not os.path.exists("master.txt"):
+    set_master_password()
+
+
 while True:
     print("\n===== PASSWORD MANAGER =====")
     print("1. Add new password")
@@ -33,9 +49,8 @@ while True:
         print("Exitting Password Manager....")
         break
     
-    master = input("Enter master password: ")
 
-    if master != MASTER_PASSWORD:
+    if not check_master_password():
         print("Wrong master password !")
         continue
 
