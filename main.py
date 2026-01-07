@@ -47,8 +47,7 @@ while True:
 
     if choice == "3":
         print("Exitting Password Manager....")
-        break
-    
+        break 
 
     if not check_master_password():
         print("Wrong master password !")
